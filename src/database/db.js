@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
-import pkg from "pg";
+import pg from "pg";
 
 dotenv.config();
 
-const { Pool } = pkg;
+const { Pool } = pg;
 
-export const connection = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
+const configDatabase = {
+  connectionString: process.env.DATABASE_URL
+};
 
-console.log("Connected to PostgreSQL");
+if (process.env.MODE === "prod") configDatabase.ssl = true;
+
+export const db = new Pool(configDatabase);

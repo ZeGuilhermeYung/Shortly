@@ -11,11 +11,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(signupRouter);
-app.use(signinRouter);
-app.use(urlsRouter);
-app.use(usersRouter);
+app.use(router);
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server running in port ${port}`));
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Running server on port ${PORT}`));

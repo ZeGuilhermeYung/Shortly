@@ -1,7 +1,7 @@
-import { connection } from "../database/db.js";
+import database from "../database/db.js";
 
 function insertUser(name, email, hashPassword) {
-  return connection.query(
+  return database.query(
     `
     INSERT INTO
         users(name, email, password)
@@ -13,7 +13,7 @@ function insertUser(name, email, hashPassword) {
 }
 
 async function getUserWithThisEmail(email) {
-  const userWithThisEmail = await connection.query(
+  const userWithThisEmail = await database.query(
     `
     SELECT *
     FROM
@@ -28,7 +28,7 @@ async function getUserWithThisEmail(email) {
 }
 
 async function getUserAndUrls(userId) {
-  const userAndUrls = await connection.query(
+  const userAndUrls = await database.query(
     `
     SELECT
         users.id, users.name,
@@ -63,7 +63,7 @@ async function getUserAndUrls(userId) {
 }
 
 async function getRanking() {
-  const ranking = await connection.query(
+  const ranking = await database.query(
     `
     SELECT
         users.id, users.name,

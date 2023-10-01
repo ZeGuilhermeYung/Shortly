@@ -2,8 +2,8 @@ import { Router } from "express";
 import { signup } from "../controllers/signupController.js";
 import { signupValidation } from "../middlewares/signupValidationMiddleware.js";
 
-const router = Router();
+const signupRouter = Router();
 
-router.post("/signup", signupValidation, signup);
+signupRouter.post("/signup", signupValidation, signup);
 
-export default router;
+export default signupRouter;

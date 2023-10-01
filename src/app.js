@@ -1,10 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import signupRouter from "./routes/signupRouter.js";
-import signinRouter from "./routes/signinRouter.js";
-import urlsRouter from "./routes/urlsRouter.js";
-import usersRouter from "./routes/usersRouter.js";
+import router from "./routes/index.js";
 
 dotenv.config();
 

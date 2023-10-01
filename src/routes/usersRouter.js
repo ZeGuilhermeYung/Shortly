@@ -2,9 +2,9 @@ import { Router } from "express";
 import { getRanking, getUser } from "../controllers/usersController.js";
 import { tokenValidation } from "../middlewares/tokenValidationMiddleware.js";
 
-const router = Router();
+const usersRouter = Router();
 
-router.get("/users/me", tokenValidation, getUser);
-router.get("/ranking", getRanking);
+usersRouter.get("/users/me", tokenValidation, getUser);
+usersRouter.get("/ranking", getRanking);
 
-export default router;
+export default usersRouter;

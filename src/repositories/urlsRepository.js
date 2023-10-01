@@ -1,7 +1,7 @@
-import { connection } from "../database/db.js";
+import database from "../database/db.js";
 
 function insertUrl(url, shortUrl, userId) {
-  return connection.query(
+  return database.query(
     `
     INSERT INTO
         urls(url, "shortUrl", "createdBy")
@@ -13,7 +13,7 @@ function insertUrl(url, shortUrl, userId) {
 }
 
 async function getUrlById(urlId) {
-  const url = await connection.query(
+  const url = await database.query(
     `
     SELECT
         id, "shortUrl", url
@@ -29,7 +29,7 @@ async function getUrlById(urlId) {
 }
 
 async function getUrlByShortened(shortUrl) {
-  const url = await connection.query(
+  const url = await database.query(
     `
     SELECT
         id, url
@@ -45,7 +45,7 @@ async function getUrlByShortened(shortUrl) {
 }
 
 function updateUrl(urlId) {
-  return connection.query(
+  return database.query(
     `
     UPDATE
         urls
@@ -59,7 +59,7 @@ function updateUrl(urlId) {
 }
 
 async function getUrlOwner(urlId) {
-  const urlOwner = await connection.query(
+  const urlOwner = await database.query(
     `
     SELECT
         "createdBy"
@@ -75,7 +75,7 @@ async function getUrlOwner(urlId) {
 }
 
 function deleteUrl(urlId) {
-  return connection.query(
+  return database.query(
     `
     DELETE FROM
         urls

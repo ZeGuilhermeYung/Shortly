@@ -6,8 +6,8 @@ async function signUp(name, email, passwordHash) {
 }
 
 async function signIn(id, token) {
-    const query = `INSERT INTO sessions (token, "userId") VALUES ($1, $2);`;
-    return database.query(query, [token, id]);
+    const query = `INSERT INTO sessions ("userId", token) VALUES ($1, $2);`;
+    return database.query(query, [id, token]);
 }
 
 async function userExist(email) {

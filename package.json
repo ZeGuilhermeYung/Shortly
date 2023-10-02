@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "./src/routes/index.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
     "dev": "npx nodemon ./src/app.js"
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ZeGuilhermeYung/Shortly.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Zé Guilherme",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -26,6 +26,6 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }

@@ -24,13 +24,6 @@ SET default_table_access_method = heap;
 -- Name: urls; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE sessions (
-	id SERIAL PRIMARY KEY,
-	token TEXT NOT NULL UNIQUE,
-	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
-	"userId" INTEGER REFERENCES users(id)
-);
-
 CREATE TABLE public.urls (
     id integer NOT NULL,
     url text NOT NULL,

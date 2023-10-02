@@ -20,7 +20,7 @@ async function signUp(req, res) {
 
 async function singIn(req, res) {
     const { email, password } = res.locals.body;
-    const userId = res.locals.id;
+    const userId = req.params.id;
 
     try {
         const user = (await authRepository.userExist(email)).rows[0];

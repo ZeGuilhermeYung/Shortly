@@ -29,7 +29,7 @@ async function signIn(req, res) {
             return;
         }
 
-        const isValidPassword = bcrypt.compareSync(password, user.password);
+        const isValidPassword = bcrypt.compareSync(password, user.passwordHash);
         if (!isValidPassword) {
             res.sendStatus(401);
             return;

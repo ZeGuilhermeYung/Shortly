@@ -2,9 +2,11 @@ import jwt from "jsonwebtoken";
 import database from "../database/db.js";
 
 async function authValidation(req, res, next) {
-    const token = req.headers.authorization?.replace("Bearer ", "");
+    const { authorization } = req.headers;
+    const token = authorization?.replace("Bearer ", "");
+
     if (!token) {
-        res.sendStatus(401);
+        res.sendStatus(404);
         return;
     }
     let user;

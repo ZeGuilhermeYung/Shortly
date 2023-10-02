@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { v4 as uuid } from "uuid";
+import jwt from "jsonwebtoken";
 import { authRepository } from "../repositories/authRepository.js";
 
 
@@ -35,7 +35,9 @@ async function signIn(req, res) {
             return;
         }
 
-        const token = uuid();
+        const token = jwt.sign({
+            userId: user.id
+        }, process.env.TOKEN_SECRET);
 
         await authRepository.signInAuth(user.id, token);
 

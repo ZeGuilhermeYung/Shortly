@@ -1,7 +1,7 @@
 import database from "../database/db.js";
 
 async function signUp(name, email, passwordHash) {
-    const query = `INSERT INTO users (name, email, "passwordHash") VALUES ($1, $2, $3);`;
+    const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`;
     return database.query(query, [name, email, passwordHash]);
 }
 

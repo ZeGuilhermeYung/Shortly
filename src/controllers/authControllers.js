@@ -9,7 +9,7 @@ async function signUp(req, res) {
     try {
         const passwordHash = bcrypt.hashSync(password, 12);
 
-        await authRepository.signUp(name, email, passwordHash);
+        await authRepository.signUpAuth(name, email, passwordHash);
 
         res.sendStatus(201);
     } catch (error) {
@@ -39,7 +39,7 @@ async function signIn(req, res) {
             userId: user.id
         }, process.env.TOKEN_SECRET);
 
-        await authRepository.signIn(user.id, token);
+        await authRepository.signInAuth(user.id, token);
 
         res.status(200).send({ token });
     } catch (error) {

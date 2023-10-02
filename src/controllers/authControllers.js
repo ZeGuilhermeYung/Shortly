@@ -18,9 +18,8 @@ async function signUp(req, res) {
     }
 }
 
-async function singIn(req, res) {
+async function signIn(req, res) {
     const { email, password } = res.locals.body;
-    const userId = req.params.id;
 
     try {
         const user = (await authRepository.userExist(email)).rows[0];
@@ -37,10 +36,10 @@ async function singIn(req, res) {
         }
 
         const token = jwt.sign({
-            userId
+            userId: user.id // Usando o user.id obtido do banco de dados.
         }, process.env.TOKEN_SECRET);
 
-        await authRepository.signIn(userId, token);
+        await authRepository.signIn(user.id, token);
 
         res.status(200).send({ token });
     } catch (error) {
@@ -51,5 +50,5 @@ async function singIn(req, res) {
 
 export {
     signUp,
-    singIn
+    signIn
 };

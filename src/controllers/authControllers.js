@@ -36,7 +36,7 @@ async function signIn(req, res) {
         }
 
         const token = jwt.sign({
-            userId: user.id // Usando o user.id obtido do banco de dados.
+            userId: user.id
         }, process.env.TOKEN_SECRET);
 
         await authRepository.signIn(user.id, token);

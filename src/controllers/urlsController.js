@@ -1,5 +1,4 @@
 import { urlSchema } from "../schemas/urlSchema.js";
-import { connection } from "../database/db.js";
 import { nanoid } from "nanoid";
 import { urlsRepository } from "../repositories/urlsRepository.js";
 

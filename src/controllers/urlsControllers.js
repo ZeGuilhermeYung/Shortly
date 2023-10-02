@@ -7,10 +7,6 @@ async function shortUrl(req, res) {
     const shortUrl = nanoid(8);
 
     try {
-        if (!isValidURL(url)) {
-            res.status(422).json({ error: "A propriedade 'url' deve ser uma URL válida." });
-            return;
-        };
         const { rows: [shortenUrl] } = await urlRepository.postShortUrl(userId, url, shortUrl);
 
         res.status(201).send(shortenUrl);     

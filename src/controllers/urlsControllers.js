@@ -2,15 +2,14 @@ import { nanoid } from "nanoid";
 import { urlRepository } from "../repositories/urlsRepository.js";
 
 async function shortUrl(req, res) {
-    const { user, body } = res.locals;
-    const url = body.url;
+    const { url } = req.body;
+    const { userId } = res.locals;
+    const shortUrl = nanoid(8);
 
     try {
-        const shortUrl = nanoid(8);
+        const shortenUrl = await urlRepository.postShortUrl(userId, url, shortUrl);
 
-        await urlRepository.postShortUrl(user.userId, url, shortUrl);
-
-        res.send({ shortUrl });     
+        res.send(shortenUrl.rows[0]);     
     } catch (error) {
         console.log(error);
         res.sendStatus(500);

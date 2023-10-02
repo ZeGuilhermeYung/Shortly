@@ -1,7 +1,7 @@
 import database from "../database/db.js";
 
 async function postShortUrl(id, url, shortUrl) {
-    const query = `INSERT INTO urls ("userId", url, "shortUrl") VALUES ($1, $2, $3);`;
+    const query = `INSERT INTO urls ("userId", url, "shortUrl") VALUES ($1, $2, $3) RETURNING id, "shortUrl";`;
     return database.query(query, [id, url, shortUrl]);
 }
 

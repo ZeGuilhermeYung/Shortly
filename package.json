@@ -23,7 +23,8 @@
     "joi": "^17.10.2",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^4.0.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

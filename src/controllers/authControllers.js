@@ -23,11 +23,7 @@ async function singIn(req, res) {
 
     try {
         const user = (await authRepository.userExist(email)).rows[0];
-
-        const token = jwt.sign({
-          userId: user.id
-        }, process.env.TOKEN_SECRET);
-
+        
         if (!user) {
             res.sendStatus(401);
             return;
@@ -38,6 +34,10 @@ async function singIn(req, res) {
             res.sendStatus(401);
             return;
         }
+
+        const token = jwt.sign({
+            userId: user.id
+        }, process.env.TOKEN_SECRET);
 
         await authRepository.signIn(user.id, token);
 

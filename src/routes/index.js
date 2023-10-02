@@ -2,7 +2,7 @@ import express from "express";
 import signinRouter from "./signinRouter.js";
 import signupRouter from "./signupRouter.js";
 import urlsRouter from "./urlsRouter.js";
-import usersRouter from "./userRouter.js";
+import usersRouter from "./usersRouter.js";
 
 const router = express.Router();
 router.use(signinRouter);

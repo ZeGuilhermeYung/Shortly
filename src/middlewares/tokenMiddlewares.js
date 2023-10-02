@@ -19,7 +19,7 @@ async function authValidation(req, res, next) {
 
     try {
         
-        const session = (await database.query(`SELECT * FROM sessions WHERE "userId" = $1 AND token = $2;`,[
+        const session = (await database.query(`SELECT * FROM sessions WHERE token = $1 AND "userId" = $2;`,[
             user.userId,
             token
         ])).rows[0];

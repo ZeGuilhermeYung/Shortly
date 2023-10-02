@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { v4 as uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { authRepository } from "../repositories/authRepository.js";
 
 
@@ -35,7 +35,7 @@ async function signIn(req, res) {
             return;
         }
 
-        const token = uuid();
+        const token = uuidv4();
 
         await authRepository.signInAuth(user.id, token);
 

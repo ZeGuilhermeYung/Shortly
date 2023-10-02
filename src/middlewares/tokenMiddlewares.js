@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import database from "../database/db.js";
 
 async function authValidation(req, res, next) {
@@ -12,15 +11,6 @@ async function authValidation(req, res, next) {
     let user;
 
     try {
-        user = jwt.verify(token, process.env.TOKEN_SECRET);
-
-    } catch (error) {
-        res.sendStatus(404);
-        return;
-    }
-
-    try {
-        
         const session = (await database.query(`SELECT * FROM sessions WHERE "userId" = $1 AND token = $2;`,[
             user.userId,
             token
@@ -32,9 +22,9 @@ async function authValidation(req, res, next) {
         }
 
         res.locals.user = user;
-        next();        
+        next();
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.sendStatus(500);
     }
 }

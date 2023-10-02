@@ -37,7 +37,7 @@ async function singIn(req, res) {
             userId: user.id
         }, process.env.TOKEN_SECRET);
 
-        await authRepository.signIn(user.id, token);
+        await authRepository.signIn(token, user.id);
 
         res.status(200).send({ token });
     } catch (error) {

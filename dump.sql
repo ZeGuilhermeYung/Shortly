@@ -57,10 +57,10 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 --
 
 CREATE TABLE public.urls (
-    id SERIAL PRIMARY KEY,
-    "userId" INTEGER REFERENCES users(id),
+    id integer NOT NULL,
+    "userId" integer,
     url text NOT NULL,
-    "shortUrl" text NOT NULL UNIQUE,
+    "shortUrl" character varying(8),
     "visitCount" integer DEFAULT 0 NOT NULL,
     "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );

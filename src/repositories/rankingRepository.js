@@ -1,4 +1,4 @@
-import database from "../database/index.js";
+import database from "../database/db.js";
 
 async function getRanks() {
     const query =

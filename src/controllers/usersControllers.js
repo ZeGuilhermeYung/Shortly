@@ -1,4 +1,4 @@
-import { userRepository } from "../repositories/users.repositories.js";
+import { userRepository } from "../repositories/usersRepository"; 
 
 async function readUser(req, res) {
     const { user } = res.locals;

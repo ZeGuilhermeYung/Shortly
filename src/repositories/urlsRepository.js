@@ -1,4 +1,4 @@
-import database from "../database/index.js";
+import database from "../database/db.js";
 
 async function postShortUrl(id, url, shortUrl) {
     const query = `INSERT INTO urls ("userId", url, "shortUrl") VALUES ($1, $2, $3);`;

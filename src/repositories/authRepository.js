@@ -1,4 +1,4 @@
-import database from "../database/index.js";
+import database from "../database/db.js";
 
 async function signUp(name, email, passwordHash) {
     const query = `INSERT INTO users (name, email, "passwordHash") VALUES ($1, $2, $3);`;

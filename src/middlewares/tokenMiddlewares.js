@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { connection } from "../database/index.js";
+import database from "../database/db.js";
 
 async function authValidation(req, res, next) {
     const token = req.headers.authorization?.replace("Bearer ", "");
@@ -19,7 +19,7 @@ async function authValidation(req, res, next) {
 
     try {
         
-        const session = (await connection.query(`SELECT * FROM sessions WHERE "userId" = $1 AND token = $2;`,[
+        const session = (await database.query(`SELECT * FROM sessions WHERE "userId" = $1 AND token = $2;`,[
             user.userId,
             token
         ])).rows[0];

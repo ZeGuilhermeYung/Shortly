@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { authRepository } from "../repositories/auth.reposotiries.js";
+import { authRepository } from "../repositories/authRepository";
 
 async function signUp(req, res) {
     const { name, email, password } = res.locals.body;

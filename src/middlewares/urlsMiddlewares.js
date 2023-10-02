@@ -1,4 +1,4 @@
-import { connection } from "../database/index.js";
+import database from "../database/db.js";
 
 async function nonRepeatedUrlValidation(req, res, next) {
     const { url } = res.locals.body;
@@ -6,7 +6,7 @@ async function nonRepeatedUrlValidation(req, res, next) {
 
     try {
         const query = `SELECT * FROM urls WHERE url = $1 and "userId" = $2;`;
-        const repeatedUrl = (await connection.query(query, [url, user.userId])).rows[0];
+        const repeatedUrl = (await database.query(query, [url, user.userId])).rows[0];
 
         if (repeatedUrl) {
             res.sendStatus(409);
@@ -29,7 +29,7 @@ async function userHasUrlValidation(req, res, next) {
     }
 
     try {
-        const url = (await connection.query(`SELECT * FROM urls WHERE id = $1`, [id])).rows[0];
+        const url = (await database.query(`SELECT * FROM urls WHERE id = $1`, [id])).rows[0];
         if (!url) {
             res.sendStatus(404);
             return;

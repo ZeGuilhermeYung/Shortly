@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { urlRepository } from "../repositories/urlsRepository";
+import { urlRepository } from "../repositories/urlsRepository.js";
 
 async function shortUrl(req, res) {
     const { user, body } = res.locals;

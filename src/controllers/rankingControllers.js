@@ -1,4 +1,4 @@
-import { rankRepository } from "../repositories/rankingRepository"; 
+import { rankRepository } from "../repositories/rankingRepository.js"; 
 
 async function rankingUsers(req, res) {
     try {

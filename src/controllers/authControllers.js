@@ -20,6 +20,7 @@ async function signUp(req, res) {
 
 async function singIn(req, res) {
     const { email, password } = res.locals.body;
+    const userId = res.locals.user.id;
 
     try {
         const user = (await authRepository.userExist(email)).rows[0];
@@ -36,7 +37,7 @@ async function singIn(req, res) {
         }
 
         const token = jwt.sign({
-            userId: user.id
+            userId
         }, process.env.TOKEN_SECRET);
 
         await authRepository.signIn(user.id, token);

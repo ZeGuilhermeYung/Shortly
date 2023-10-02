@@ -27,7 +27,7 @@ async function singIn(req, res) {
             return;
         }
 
-        const isValidPassword = bcrypt.compareSync(password, user.passwordHash);
+        const isValidPassword = bcrypt.compareSync(password, user.password);
         if (!isValidPassword) {
             res.sendStatus(401);
             return;

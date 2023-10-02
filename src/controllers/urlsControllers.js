@@ -4,12 +4,12 @@ import { urlRepository } from "../repositories/urlsRepository.js";
 async function shortUrl(req, res) {
     const { url } = req.body;
     const { userId } = res.locals;
-    const shortUrl = nanoid(8);
+    const shortURL = nanoid(8);
 
     try {
-        const shortenUrl = await urlRepository.postShortUrl(userId, url, shortUrl);
+        const { rows: [shortenUrl] } = await urlRepository.postShortUrl(userId, url, shortURL);
 
-        res.send(shortenUrl.rows[0]);     
+        res.status(201).send(shortenUrl);     
     } catch (error) {
         console.log(error);
         res.sendStatus(500);

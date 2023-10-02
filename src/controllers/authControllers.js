@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { authRepository } from "../repositories/authRepository.js";
 
+
 async function signUp(req, res) {
   const { name, email, password } = res.locals.body;
 
@@ -22,6 +23,11 @@ async function singIn(req, res) {
 
     try {
         const user = (await authRepository.userExist(email)).rows[0];
+
+        const token = jwt.sign({
+          userId: user.id
+        }, process.env.TOKEN_SECRET);
+
         if (!user) {
             res.sendStatus(401);
             return;
@@ -32,10 +38,6 @@ async function singIn(req, res) {
             res.sendStatus(401);
             return;
         }
-
-        const token = jwt.sign({
-            userId: user.id
-        }, process.env.TOKEN_SECRET);
 
         await authRepository.signIn(user.id, token);
 

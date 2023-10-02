@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "./src/app.js",
+  "main": "./src/routes/index.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "dev": "npx nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeGuilhermeYung/Shortly.git"
   },
   "keywords": [],
   "author": "",

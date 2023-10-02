@@ -16,7 +16,7 @@ async function userExist(email) {
 }
 
 const authRepository = {
-	signUp,
+	  signUp,
     userExist,
     signIn
 };

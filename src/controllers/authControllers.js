@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import { authRepository } from "../repositories/authRepository.js";
 
 async function signUp(req, res) {
-    const { name, email, password } = res.locals.body;
+  const { name, email, password } = res.locals.body;
 
     try {
-        const passwordHash = bcrypt.hashSync(password, 10);
+        const passwordHash = bcrypt.hashSync(password, 12);
 
         await authRepository.signUp(name, email, passwordHash);
 

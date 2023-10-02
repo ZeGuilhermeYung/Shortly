@@ -1,10 +1,9 @@
-import { Router } from "express";
-import { getRanking, getUser } from "../controllers/usersController.js";
-import { tokenValidation } from "../middlewares/tokenValidationMiddleware.js";
+import express from "express";
+import { readUser } from "../controllers/users.controllers.js";
+import { authValidation } from "../middlewares/token.middlewares.js";
 
-const usersRouter = Router();
+const usersRouter = express.Router();
 
-usersRouter.get("/users/me", tokenValidation, getUser);
-usersRouter.get("/ranking", getRanking);
+usersRouter.get("/users/me", authValidation, readUser);
 
 export default usersRouter;

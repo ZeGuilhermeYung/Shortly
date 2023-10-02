@@ -1,12 +1,12 @@
 import express from "express";
-import signinRouter from "./signinRouter.js";
-import signupRouter from "./signupRouter.js";
+import authRouter from "./authRouter.js";
+import rankingRouter from "./rankingRouter.js";
 import urlsRouter from "./urlsRouter.js";
 import usersRouter from "./usersRouter.js";
 
 const router = express.Router();
-router.use(signinRouter);
-router.use(signupRouter);
+router.use(authRouter);
+router.use(rankingRouter);
 router.use(urlsRouter);
 router.use(usersRouter);
 

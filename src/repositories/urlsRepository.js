@@ -1,96 +1,36 @@
-import database from "../database/db.js";
+import database from "../database/index.js";
 
-function insertUrl(url, shortUrl, userId) {
-  return database.query(
-    `
-    INSERT INTO
-        urls(url, "shortUrl", "createdBy")
-    VALUES 
-        ($1, '${shortUrl}', '${userId}');
-    `,
-    [url]
-  );
+async function postShortUrl(id, url, shortUrl) {
+    const query = `INSERT INTO urls ("userId", url, "shortUrl") VALUES ($1, $2, $3);`;
+    return database.query(query, [id, url, shortUrl]);
 }
 
-async function getUrlById(urlId) {
-  const url = await database.query(
-    `
-    SELECT
-        id, "shortUrl", url
-    FROM
-        urls
-    WHERE
-        id = $1;
-    `,
-    [urlId]
-  );
-
-  return url.rows[0];
+async function getUrl(id) {
+    const query = `SELECT id, "shortUrl", url FROM urls WHERE id = $1;`;
+    return database.query(query, [id]);
 }
 
-async function getUrlByShortened(shortUrl) {
-  const url = await database.query(
-    `
-    SELECT
-        id, url
-    FROM
-        urls
-    WHERE
-        "shortUrl" = $1;
-    `,
-    [shortUrl]
-  );
-
-  return url.rows[0];
+async function getShortUrl(shortUrl) {
+    const query = `SELECT id, url, "visitCount" FROM urls WHERE "shortUrl" = $1;`;
+    return database.query(query, [shortUrl]);
 }
 
-function updateUrl(urlId) {
-  return database.query(
-    `
-    UPDATE
-        urls
-    SET
-        "visitCount" = "visitCount" + 1
-    WHERE
-        id = $1;
-    `,
-    [urlId]
-  );
+async function updateVisitCount(visitCount, id) {
+    const query = `UPDATE urls SET "visitCount" = $1 WHERE id = $2;`;
+    return database.query(query, [visitCount, id]);
 }
 
-async function getUrlOwner(urlId) {
-  const urlOwner = await database.query(
-    `
-    SELECT
-        "createdBy"
-    FROM
-        urls
-    WHERE
-        id = $1;
-    `,
-    [urlId]
-  );
-
-  return urlOwner.rows[0]?.createdBy;
+async function deleteUrl(id) {
+    const query = `DELETE FROM urls WHERE id = $1;`;
+    return database.query(query, [id]);
 }
 
-function deleteUrl(urlId) {
-  return database.query(
-    `
-    DELETE FROM
-        urls
-    WHERE
-        id = $1;
-    `,
-    [urlId]
-  );
-}
-
-export const urlsRepository = {
-  insertUrl,
-  getUrlById,
-  getUrlByShortened,
-  updateUrl,
-  getUrlOwner,
-  deleteUrl,
+const urlRepository = {
+	postShortUrl,
+    getUrl,
+    getShortUrl,
+    updateVisitCount,
+    deleteUrl
 };
+
+export { urlRepository };
